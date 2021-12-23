@@ -9,24 +9,26 @@ using System.Threading.Tasks;
 
 namespace Logic.Classes
 {
-    public class WorkerLogic : IWorkerLogic
+    public class EntityLogic : ILogicService<Entity>
     {
-        IWorkerRepo workerRepo;
+        IRepoBase<Entity,long> entityRepo;
 
-        public WorkerLogic(IWorkerRepo workerRepo)
+        public EntityLogic(IRepoBase<Entity, long> enityRepo)
         {
-            this.workerRepo = workerRepo;
+            this.entityRepo = enityRepo;
         }
 
-        public async Task<Worker> AddAsync(Worker entity)
+        public async Task<Entity> AddAsync(Entity entity)
         {
-            var query = (from x in workerRepo.GetAll()
+            var query = (from x in entityRepo.GetAll()
                           where x.Id == entity.Id
                           select x).FirstOrDefault();
 
             if(query == null)
             {
-                await workerRepo.Add(entity);
+                await entityRepo.Add(entity);
+                entity.Active = true;
+                return entity;
             }
             else
             {
@@ -34,11 +36,11 @@ namespace Logic.Classes
             }
         }
 
-        public async Task DeleteAsync(Worker entity)
+        public async Task DeleteAsync(Entity entity)
         {
-            if (await workerRepo.GetOne(entity.Id) != null)
+            if (await entityRepo.GetOne(entity.Id) != null)
             {
-                await workerRepo.Delete(entity.Id);
+                await entityRepo.Delete(entity.Id);
             }
             else
             {
@@ -46,17 +48,17 @@ namespace Logic.Classes
             }
         }
 
-        public async Task<Worker> GetByIdAsync(long id)
+        public async Task<Entity> GetByIdAsync(long id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IQueryable<Worker>> Query(Expression<Func<Worker, bool>> predicate)
+        public async Task<IQueryable<Entity>> Query(Expression<Func<Entity, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Worker> UpdateAsync(Worker entity)
+        public async Task<Entity> UpdateAsync(Entity entity)
         {
             throw new NotImplementedException();
         }
