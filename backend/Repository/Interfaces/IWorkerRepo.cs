@@ -2,7 +2,7 @@
 
 namespace Repository.Interfaces
 {
-    interface IWorkerRepo : IRepoBase<Worker, long>
+    public interface IWorkerRepo : IRepoBase<Worker, long>
     {
     }
 }

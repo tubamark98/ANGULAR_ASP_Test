@@ -14,6 +14,7 @@ namespace Repository.Interfaces
         Task Delete(TKeyType element);
 
         Task Update(TKeyType oldKey, TReturnType element);
+
         Task SaveDatabase();
     }
 }
