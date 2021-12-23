@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    class WorkerRepository : IRepository<Worker>
+    public class WorkerRepository : IRepository<Worker>
     {
-        public DbSet<Worker> DbSet { get; set; }
+        public virtual DbSet<Worker> DbSet { get; set; }
     }
 }

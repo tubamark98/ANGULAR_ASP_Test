@@ -8,7 +8,7 @@ namespace Data.DB_Models
         public string PhoneNumber { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Supervisor { get; set; }//not sure if string just yet
+        public string Supervisor { get; set; } //not sure if string just yet
         public Department Department { get; set; }
     }
 
