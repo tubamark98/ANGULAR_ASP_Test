@@ -10,10 +10,12 @@ namespace Data
         {
             this.Database.EnsureCreated();
         }
+
         public DbContext(DbContextOptions<DbContext> opt) : base(opt)
         {
 
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
