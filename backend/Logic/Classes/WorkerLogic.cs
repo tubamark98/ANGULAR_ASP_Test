@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using Data.DB_Models;
 using Logic.DTO_Models;
 using Logic.Interfaces;
 using Repository.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Logic.Classes
@@ -18,24 +22,29 @@ namespace Logic.Classes
             this.mapper = mapper;
         }
 
-        public Task CreateWorker(CreateWorkerDTO worker)
+        public async Task<Worker> AddAsync(Worker entity)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Task DeleteWorker(long Id)
+        public async Task DeleteAsync(Worker entity)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Task<List<ListWorkersDTO>> GetAllWorkers()
+        public async Task<Worker> GetByIdAsync(long id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Task UpdateWorker(long Id, CreateWorkerDTO newWorker)
+        public async Task<IQueryable<Worker>> Query(Expression<Func<Worker, bool>> predicate)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public async Task<Worker> UpdateAsync(Worker entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
