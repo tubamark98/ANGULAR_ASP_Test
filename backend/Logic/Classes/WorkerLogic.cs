@@ -1,4 +1,5 @@
 ﻿using Data.DB_Models;
+using Logic.Helpers;
 using Logic.Interfaces;
 using Repository.Interfaces;
 using System;
@@ -19,12 +20,30 @@ namespace Logic.Classes
 
         public async Task<Worker> AddAsync(Worker entity)
         {
-            throw new NotImplementedException();
+            var query = (from x in workerRepo.GetAll()
+                          where x.Id == entity.Id
+                          select x).FirstOrDefault();
+
+            if(query == null)
+            {
+                await workerRepo.Add(entity);
+            }
+            else
+            {
+                throw new NotFoundException(WorkerErrorMessages.WorkerExists);
+            }
         }
 
         public async Task DeleteAsync(Worker entity)
         {
-            throw new NotImplementedException();
+            if (await workerRepo.GetOne(entity.Id) != null)
+            {
+                await workerRepo.Delete(entity.Id);
+            }
+            else
+            {
+                throw new NotFoundException(WorkerErrorMessages.WorkerNotFound);
+            }
         }
 
         public async Task<Worker> GetByIdAsync(long id)
