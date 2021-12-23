@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using Data.DB_Models;
-using Logic.DTO_Models;
+﻿using Data.DB_Models;
 using Logic.Interfaces;
 using Repository.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -14,12 +11,10 @@ namespace Logic.Classes
     public class WorkerLogic : IWorkerLogic
     {
         IWorkerRepo workerRepo;
-        IMapper mapper;
 
-        public WorkerLogic(IWorkerRepo workerRepo, IMapper mapper)
+        public WorkerLogic(IWorkerRepo workerRepo)
         {
             this.workerRepo = workerRepo;
-            this.mapper = mapper;
         }
 
         public async Task<Worker> AddAsync(Worker entity)
