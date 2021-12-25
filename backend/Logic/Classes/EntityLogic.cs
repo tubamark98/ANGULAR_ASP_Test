@@ -24,11 +24,19 @@ namespace Logic.Classes
                           where x.Id == entity.Id
                           select x).FirstOrDefault();
 
-            if(query == null)
+            if(query == null)   //Check if it exists in the repo
             {
-                await entityRepo.Add(entity);
-                entity.Active = true;
-                return entity;
+                try
+                {
+                    await entityRepo.Add(entity);
+                    entity.Active = true;
+                    return entity;
+                }
+                catch 
+                {
+                    entity.Active = false;
+                    return entity;
+                }
             }
             else
             {
@@ -50,17 +58,25 @@ namespace Logic.Classes
 
         public async Task<Entity> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            return await entityRepo.GetOne(id);
         }
 
-        public async Task<IQueryable<Entity>> Query(Expression<Func<Entity, bool>> predicate)
+        public async Task<IQueryable<Entity>> Query(Expression<Func<Entity, bool>> predicate) //wasnt certain what to do with the predicate
         {
-            throw new NotImplementedException();
+            return this.entityRepo.GetAll().AsQueryable(); //not async yet
         }
 
         public async Task<Entity> UpdateAsync(Entity entity)
         {
-            throw new NotImplementedException();
+            if (await entityRepo.GetOne(entity.Id) != null)
+            {
+                await entityRepo.Update(entity.Id, entity);
+                return entity;
+            }
+            else
+            {
+                throw new NotFoundException(WorkerErrorMessages.WorkerNotFound);
+            }
         }
     }
 }
