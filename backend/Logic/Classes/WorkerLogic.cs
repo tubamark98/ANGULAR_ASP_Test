@@ -61,9 +61,9 @@ namespace Logic.Classes
             return await workerRepo.GetOne(id);
         }
 
-        public async Task<IQueryable<Worker>> Query(Expression<Func<Worker, bool>> predicate) //wasnt certain what to do with the predicate
+        public async Task<IQueryable<Worker>> Query(Expression<Func<Worker, bool>> predicate)
         {
-            return this.workerRepo.GetAll().AsQueryable(); //not async yet
+            return this.workerRepo.GetAll().AsQueryable().Where(predicate); //not async yet
         }
 
         public async Task<Worker> UpdateAsync(Worker worker)

@@ -28,6 +28,7 @@ namespace ApiEndpoint.Helpers
                     this.setContext(HttpStatusCode.InternalServerError, context).Wait();
                     break;
             }
+
             base.OnException(context);
         }
 
