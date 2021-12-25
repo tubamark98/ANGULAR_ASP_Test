@@ -17,14 +17,16 @@ namespace ApiEndpoint.Helpers
                 case NotFoundException: //Custom exception
                     this.setContext(HttpStatusCode.NotFound, context).Wait();
                     break;
+
                 case ArgumentException:
                     this.setContext(HttpStatusCode.UnprocessableEntity, context).Wait();
                     break;
+
                 case InvalidOperationException:
                     this.setContext(HttpStatusCode.Conflict, context).Wait();
                     break;
-                default:
 
+                default:
                     this.setContext(HttpStatusCode.InternalServerError, context).Wait();
                     break;
             }

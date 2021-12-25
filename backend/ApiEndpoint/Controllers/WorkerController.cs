@@ -13,7 +13,7 @@ namespace ApiEndpoint.Controllers
     {
         IWorkerLogic logicService;
 
-        public WorkerController(IWorkerLogic logicService)//Dependency Injection
+        public WorkerController(IWorkerLogic logicService) //Dependency Injection
         {
             this.logicService = logicService;
         }
@@ -32,18 +32,24 @@ namespace ApiEndpoint.Controllers
             return Ok(await logicService.Query(expression));
         }
 
-        [HttpPut("/UpdateWorker/{Id}")]
+        [HttpPut("/UpdateWorker")]
         public async Task<ActionResult> UpdateWorker([FromBody] Worker worker)
         {
             await logicService.UpdateAsync(worker);
             return Ok();
         }
 
-        [HttpDelete("/DeleteWorker/{Id}")]
+        [HttpDelete("/DeleteWorker")]
         public async Task<ActionResult> DeleteWorker([FromBody] Worker worker)
         {
             await logicService.DeleteAsync(worker);
             return Ok();
+        }
+
+        [HttpGet("/GetWorker/{Id}")]
+        public async Task<ActionResult<Worker>> GetWorker(long Id)
+        {
+            return Ok(await logicService.GetByIdAsync(Id));
         }
     }
 }
