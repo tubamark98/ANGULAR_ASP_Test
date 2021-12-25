@@ -49,7 +49,15 @@ namespace Repository.Classes
 
         public async Task Update(long oldKey, Worker element)
         {
-            throw new System.NotImplementedException(); //not gonna do this yet, cause I might change the properties of Worker and I didnt wanna use reflections
+            var oldWorker = await GetOne(oldKey);
+            oldWorker.Active = element.Active;
+            oldWorker.Department = element.Department;
+            oldWorker.Name = element.Name;
+            oldWorker.Password = element.Password;
+            oldWorker.PhoneNumber = element.PhoneNumber;
+            oldWorker.Supervisor = element.Supervisor;
+            oldWorker.UserName = element.UserName;
+            await this.SaveDatabase();
         }
     }
 }

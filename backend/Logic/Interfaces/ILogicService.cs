@@ -16,6 +16,5 @@ namespace Logic.Interfaces
         Task<TEntity> UpdateAsync(TEntity entity);
 
         Task DeleteAsync(TEntity entity);
-
     }
 }

@@ -13,9 +13,9 @@ namespace Logic.Classes
     {
         IRepoBase<Entity,long> entityRepo;
 
-        public EntityLogic(IRepoBase<Entity, long> enityRepo)
+        public EntityLogic(IRepoBase<Entity, long> entityRepo)
         {
-            this.entityRepo = enityRepo;
+            this.entityRepo = entityRepo;
         }
 
         public async Task<Entity> AddAsync(Entity entity)
