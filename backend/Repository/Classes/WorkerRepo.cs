@@ -19,24 +19,24 @@ namespace Repository.Classes
         public async Task Add(Worker element)
         {
             await this.db.AddAsync(element);
-            await this.db.SaveChangesAsync();
+            await this.SaveDatabase();
         }
 
         public async Task Delete(long element)
         {
             var entity = await GetOne(element);
             this.db.Remove(entity);
-            await this.db.SaveChangesAsync();
+            await this.SaveDatabase();
         }
 
         public IQueryable<Worker> GetAll()
         {
-            return this.db.Workers.DbSet;
+            return this.db.DbSet;
         }
 
         public async Task<Worker> GetOne(long key)
         {
-            var entity = await(from x in db.Workers.DbSet
+            var entity = await(from x in db.DbSet
                                where x.Id == key
                                select x).FirstOrDefaultAsync();
             return entity;

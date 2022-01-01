@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DB_Models
 {
@@ -9,6 +10,7 @@ namespace Data.DB_Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Supervisor { get; set; } //not sure if string just yet
+        [NotMapped]
         public Department Department { get; set; }
     }
 

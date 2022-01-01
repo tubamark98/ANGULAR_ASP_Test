@@ -25,10 +25,17 @@ namespace ApiEndpoint.Controllers
             return Ok();
         }
 
-        [HttpGet("/GetAllWorker")]
-        public async Task<ActionResult<Worker>> GetAllWorker()
+        [HttpGet("/GetAllWorkers")]
+        public async Task<ActionResult<Worker>> GetAllWorkers()
         {
-            Expression<Func<Worker, bool>> expression = null;
+            Expression<Func<Worker, bool>> expression = x => x is Worker;
+            return Ok(await logicService.Query(expression));
+        }
+
+        [HttpGet("/GetAllActiveWorkers")]
+        public async Task<ActionResult<Worker>> GetAllActiveWorkers()
+        {
+            Expression<Func<Worker, bool>> expression = x => x.Active == true;
             return Ok(await logicService.Query(expression));
         }
 

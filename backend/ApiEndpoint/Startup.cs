@@ -5,8 +5,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Repository.Classes;
 using Repository.Interfaces;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace ApiEndpoint
 {
@@ -17,6 +21,13 @@ namespace ApiEndpoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers(x => x.Filters.Add(new ApiExceptionFilter()));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiEndpoint", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
 
             services.AddTransient<IWorkerLogic, WorkerLogic>();
             services.AddTransient<IWorkerRepo, WorkerRepo>();
@@ -30,6 +41,13 @@ namespace ApiEndpoint
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiEndpoint v1");
+
+            });
 
             app.UseHttpsRedirection();
             app.UseRouting();

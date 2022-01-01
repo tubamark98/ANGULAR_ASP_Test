@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Data.DB_Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class DbContext : IdentityDbContext<IdentityUser>
+    public class DbContext : IdentityDbContext<IdentityUser>, IRepository<Worker>
     {
         public DbContext()
         {
@@ -29,6 +30,6 @@ namespace Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public WorkerRepository Workers;
+        public virtual DbSet<Worker> DbSet { get; set; }
     }
 }

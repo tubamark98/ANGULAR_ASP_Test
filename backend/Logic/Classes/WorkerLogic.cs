@@ -68,7 +68,8 @@ namespace Logic.Classes
 
         public async Task<Worker> UpdateAsync(Worker worker)
         {
-            if (await workerRepo.GetOne(worker.Id) != null)
+            var helper = await workerRepo.GetOne(worker.Id);
+            if (helper != null)
             {
                 await workerRepo.Update(worker.Id, worker);
                 return worker;
