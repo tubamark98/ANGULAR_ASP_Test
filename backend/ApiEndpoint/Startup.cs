@@ -31,6 +31,9 @@ namespace ApiEndpoint
 
             services.AddTransient<IWorkerLogic, WorkerLogic>();
             services.AddTransient<IWorkerRepo, WorkerRepo>();
+            services.AddTransient<IDepartmentLogic, DepartmentLogic>();
+            services.AddTransient<IDepartmentRepo, DepartmentRepo>();
+
             services.AddDbContext<Data.DbContext>();
         }
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class DbContext : IdentityDbContext<IdentityUser>, IRepository<Worker>
+    public class DbContext : IdentityDbContext<IdentityUser>, IRepository<Worker>, IRepository<Department>
     {
         public DbContext()
         {
@@ -30,6 +30,10 @@ namespace Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public virtual DbSet<Worker> DbSet { get; set; }
+        public virtual DbSet<Worker> Workers { get; set; }
+        public virtual DbSet<Department> Departments{ get; set; }
+
+        DbSet<Worker> IRepository<Worker>.DbSet { get { return Workers; } }
+        DbSet<Department> IRepository<Department>.DbSet { get { return Departments; } }
     }
 }

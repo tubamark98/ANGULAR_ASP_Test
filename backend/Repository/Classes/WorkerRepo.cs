@@ -31,12 +31,12 @@ namespace Repository.Classes
 
         public IQueryable<Worker> GetAll()
         {
-            return this.db.DbSet;
+            return this.db.Workers;
         }
 
         public async Task<Worker> GetOne(long key)
         {
-            var entity = await(from x in db.DbSet
+            var entity = await(from x in db.Workers
                                where x.Id == key
                                select x).FirstOrDefaultAsync();
             return entity;
