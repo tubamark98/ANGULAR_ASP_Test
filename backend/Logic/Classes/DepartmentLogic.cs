@@ -81,5 +81,12 @@ namespace Logic.Classes
                 throw new NotFoundException(WorkerErrorMessages.DepartmentNotFound);
             }
         }
+
+        public async Task AssignWorkerToDepartment(Worker worker, long Id)
+        {
+            var dprtm = await this.departmentRepo.GetOne(Id);
+            dprtm.AssignedWorkers.Add(worker);
+            await departmentRepo.SaveDatabase();
+        }
     }
 }

@@ -58,5 +58,12 @@ namespace ApiEndpoint.Controllers
         {
             return Ok(await logicService.GetByIdAsync(Id));
         }
+
+        [HttpGet("/AssignWorker/{Id}")]
+        public async Task<ActionResult> AssignWorkerToDepartment([FromBody] Worker worker, long Id)
+        {
+            await logicService.AssignWorkerToDepartment(worker, Id);
+            return Ok();
+        }
     }
 }
