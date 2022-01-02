@@ -20,27 +20,16 @@ namespace Logic.Classes
 
         public async Task<Worker> AddAsync(Worker worker)
         {
-            var query = (from x in workerRepo.GetAll()
-                          where x.Id == worker.Id
-                          select x).FirstOrDefault();
-
-            if(query == null)   //Check if it exists in the repo
+            try
             {
-                try
-                {
-                    await workerRepo.Add(worker);
-                    worker.Active = true;
-                    return worker;
-                }
-                catch 
-                {
-                    worker.Active = false;
-                    return worker;
-                }
+                await workerRepo.Add(worker);
+                worker.Active = true;
+                return worker;
             }
-            else
+            catch
             {
-                throw new NotFoundException(WorkerErrorMessages.WorkerExists);
+                worker.Active = false;
+                return worker;
             }
         }
 

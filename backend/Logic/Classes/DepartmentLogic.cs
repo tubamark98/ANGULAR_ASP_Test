@@ -22,27 +22,16 @@ namespace Logic.Classes
 
         public async Task<Department> AddAsync(Department entity)
         {
-            var query = (from x in departmentRepo.GetAll()
-                         where x.Id == entity.Id
-                         select x).FirstOrDefault();
-
-            if (query == null)   //Check if it exists in the repo
+            try
             {
-                try
-                {
-                    await departmentRepo.Add(entity);
-                    entity.Active = true;
-                    return entity;
-                }
-                catch
-                {
-                    entity.Active = false;
-                    return entity;
-                }
+                await departmentRepo.Add(entity);
+                entity.Active = true;
+                return entity;
             }
-            else
+            catch
             {
-                throw new NotFoundException(WorkerErrorMessages.DepartmentExists);
+                entity.Active = false;
+                return entity;
             }
         }
 

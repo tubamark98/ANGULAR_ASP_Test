@@ -1,1 +1,41 @@
-<p>worker-manager works!</p>
+<div class="personForm">
+    <label>Active</label>
+    <input type="checkbox" [(ngModel)]="actualWorker.active" />
+    <label>Name</label>
+    <input type="text" [(ngModel)]="actualWorker.name" />
+    <label>PhoneNumber</label>
+    <input type="text" [(ngModel)]="actualWorker.phoneNumber" />
+    <label>UserName</label>
+    <input type="text" [(ngModel)]="actualWorker.userName" />
+    <label>Password</label>
+    <input type="password" [(ngModel)]="actualWorker.password" />
+    <label>Supervisor</label>
+    <input type="text" [(ngModel)]="actualWorker.supervisor" />
+
+    <button (click)="saveWorker()" type="button">Save Worker</button>
+    <button (click)="sync()" type="button">Sync Worker</button>
+    <button (click)="erase()" type="button">Erase Form</button>
+</div>
+
+<table>
+    <tr>
+      <th>Active</th>
+      <th>Name</th>
+      <th>PhoneNumber</th>
+      <th>UserName</th>
+      <th>Password</th>
+      <th>Supervisor</th>
+    </tr>
+    <tr *ngFor="let worker of workerCollection">
+      <td>{{worker.active}}</td>
+      <td>{{worker.name}}</td>
+      <td>{{worker.phoneNumber}}</td>
+      <td>{{worker.userName}}</td>
+      <td>{{worker.password}}</td>
+      <td>{{worker.supervisor}}</td>
+      <td>
+        <button (click)="deleteWorker(worker.id)">Remove</button>
+        <button (click)="updateWorker(worker.id)">Update</button>
+      </td>
+    </tr>
+</table>
