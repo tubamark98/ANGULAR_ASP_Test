@@ -9,9 +9,9 @@ namespace Repository.Classes
 {
     public class WorkerRepo : IWorkerRepo
     {
-        private Data.DbContext db;
+        private Data.workerDbContext db;
 
-        public WorkerRepo(Data.DbContext db)
+        public WorkerRepo(Data.workerDbContext db)
         {
             this.db = db;
         }

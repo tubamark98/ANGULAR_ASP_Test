@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class DbContext : IdentityDbContext<IdentityUser>,
+    public class workerDbContext : IdentityDbContext<IdentityUser>,
         IRepository<Worker>, IRepository<Department>
     {
-        public DbContext()
+        public workerDbContext()
         {
             this.Database.EnsureCreated();
         }
 
-        public DbContext(DbContextOptions<DbContext> opt) : base(opt)
+        public workerDbContext(DbContextOptions<workerDbContext> opt) : base(opt)
         {
 
         }

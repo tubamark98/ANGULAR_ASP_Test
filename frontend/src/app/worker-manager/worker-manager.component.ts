@@ -27,6 +27,7 @@ export class WorkerManagerComponent implements OnInit {
 
   saveWorker(){
     if (this.actualWorker.id == 0){
+      console.log(this.actualWorker);
       this.http.post('https://localhost:44343/CreateWorker', this.actualWorker)
         .subscribe(t => console.log(t));
     }

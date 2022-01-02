@@ -11,6 +11,9 @@
     <input type="password" [(ngModel)]="actualWorker.password" />
     <label>Supervisor</label>
     <input type="text" [(ngModel)]="actualWorker.supervisor" />
+    <label>DepartmentID</label>
+    <input type="number" [(ngModel)]="actualWorker.departmentId" />
+    
 
     <button (click)="erase()" type="button">Erase Form</button>
     <button (click)="saveWorker()" type="button">Save Worker</button>

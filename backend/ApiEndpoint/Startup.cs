@@ -43,7 +43,7 @@ namespace ApiEndpoint
             services.AddTransient<DBSeed, DBSeed>();
 
             string appsettingsConnectionString = Configuration.GetConnectionString("workerdb");
-            services.AddDbContext<Data.DbContext>(options =>options
+            services.AddDbContext<Data.workerDbContext>(options =>options
             .EnableSensitiveDataLogging()
             .EnableDetailedErrors()
             .UseSqlServer(appsettingsConnectionString, b => b.MigrationsAssembly("ApiEndpoint")));
