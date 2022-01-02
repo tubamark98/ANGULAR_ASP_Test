@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiEndpoint</name>
+    </assembly>
+    <members>
+        <member name="M:ApiEndpoint.Controllers.AuthController.PopulateDB">
+            <summary>
+            Used only for development purposes, ONLY USE ONCE to populate database with example data
+            </summary>
+            <returns>200</returns>
+        </member>
+    </members>
+</doc>

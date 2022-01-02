@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class DbContext : IdentityDbContext<IdentityUser>, IRepository<Worker>, IRepository<Department>
+    public class DbContext : IdentityDbContext<IdentityUser>,
+        IRepository<Worker>, IRepository<Department>
     {
         public DbContext()
         {

@@ -1,5 +1,6 @@
 using ApiEndpoint.Helpers;
 using Logic.Classes;
+using Logic.Helpers;
 using Logic.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,7 @@ namespace ApiEndpoint
             services.AddTransient<IWorkerRepo, WorkerRepo>();
             services.AddTransient<IDepartmentLogic, DepartmentLogic>();
             services.AddTransient<IDepartmentRepo, DepartmentRepo>();
+            services.AddTransient<DBSeed, DBSeed>();
 
             services.AddDbContext<Data.DbContext>();
         }
@@ -47,9 +49,7 @@ namespace ApiEndpoint
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiEndpoint v1");
-
             });
 
             app.UseHttpsRedirection();

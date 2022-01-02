@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Data.DB_Models
 {
@@ -11,7 +11,7 @@ namespace Data.DB_Models
         public string Password { get; set; }
         public string Supervisor { get; set; } //not sure if string just yet
 
-        [NotMapped]
+        [JsonIgnore]
         public virtual Department Department { get; set; }
     }
 }
