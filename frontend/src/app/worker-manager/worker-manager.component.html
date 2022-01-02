@@ -1,4 +1,4 @@
-<div class="personForm">
+<div class="workerForm">
     <label>Active</label>
     <input type="checkbox" [(ngModel)]="actualWorker.active" />
     <label>Name</label>
@@ -12,9 +12,9 @@
     <label>Supervisor</label>
     <input type="text" [(ngModel)]="actualWorker.supervisor" />
 
+    <button (click)="erase()" type="button">Erase Form</button>
     <button (click)="saveWorker()" type="button">Save Worker</button>
     <button (click)="sync()" type="button">Sync Worker</button>
-    <button (click)="erase()" type="button">Erase Form</button>
 </div>
 
 <table>

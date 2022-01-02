@@ -25,12 +25,10 @@ namespace Logic.Classes
             try
             {
                 await departmentRepo.Add(entity);
-                entity.Active = true;
                 return entity;
             }
             catch
             {
-                entity.Active = false;
                 return entity;
             }
         }

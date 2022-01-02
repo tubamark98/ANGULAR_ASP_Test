@@ -23,12 +23,10 @@ namespace Logic.Classes
             try
             {
                 await workerRepo.Add(worker);
-                worker.Active = true;
                 return worker;
             }
             catch
             {
-                worker.Active = false;
                 return worker;
             }
         }
