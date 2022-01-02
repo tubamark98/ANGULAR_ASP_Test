@@ -46,10 +46,10 @@ namespace ApiEndpoint.Controllers
             return Ok();
         }
 
-        [HttpDelete("/DeleteDepartment")]
-        public async Task<ActionResult> DeleteDepartment([FromBody] Department department)
+        [HttpDelete("/DeleteDepartment/{Id}")]
+        public async Task<ActionResult> DeleteDepartment(long Id)
         {
-            await logicService.DeleteAsync(department);
+            await logicService.DeleteAsync(await logicService.GetByIdAsync(Id)); //not every pretty
             return Ok();
         }
 

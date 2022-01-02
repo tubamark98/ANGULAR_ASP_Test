@@ -1,13 +1,13 @@
 export class Department {
-    public Active : boolean;
-    public Name : string;
-    public Id : number;
-    public Abreviation : string;
+    public active : boolean;
+    public name : string;
+    public id : number;
+    public abreviation : string;
 
     constructor(Name : string, Active : boolean, Abreviation : string){
-        this.Active = Active;
-        this.Name = Name;
-        this.Abreviation = Abreviation;
-        this.Id = 0;
+        this.active = Active;
+        this.name = Name;
+        this.abreviation = Abreviation;
+        this.id = 0;
     }
 }

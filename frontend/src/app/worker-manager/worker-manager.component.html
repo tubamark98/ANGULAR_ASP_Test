@@ -21,18 +21,23 @@
     <tr>
       <th>Active</th>
       <th>Name</th>
-      <th>PhoneNumber</th>
-      <th>UserName</th>
+      <th>Phone Number</th>
+      <th>User Name</th>
       <th>Password</th>
       <th>Supervisor</th>
+      <th>Department Name</th>
+      <th>Abreviation</th>
+      <th>Edit</th>
     </tr>
     <tr *ngFor="let worker of workerCollection">
       <td>{{worker.active}}</td>
       <td>{{worker.name}}</td>
       <td>{{worker.phoneNumber}}</td>
       <td>{{worker.userName}}</td>
-      <td>{{worker.password}}</td>
+      <td>{{worker.password}}</td> <!-- I know showing password is really bad practice, just wanted to show the data comes back properly -->
       <td>{{worker.supervisor}}</td>
+      <td>{{worker.departmentName}}</td>
+      <td>{{worker.abreviation}}</td>
       <td>
         <button (click)="deleteWorker(worker.id)">Remove</button>
         <button (click)="updateWorker(worker.id)">Update</button>

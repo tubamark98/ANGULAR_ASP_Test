@@ -6,6 +6,9 @@ export class Worker {
     public password : string;
     public supervisor : string;
     public id : number;
+    public departmentName : string;
+    public abreviation : string;
+    public departmentId : number;
 
     constructor(active : boolean, name : string, 
         phoneNumber : string, userName : string, password : string, supervisor : string){
@@ -16,5 +19,8 @@ export class Worker {
         this.password = password;
         this.supervisor = supervisor;
         this.id = 0;
+        this.departmentId = 0;
+        this.abreviation = '';
+        this.departmentName = '';
     }
 }

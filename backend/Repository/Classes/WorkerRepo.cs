@@ -57,6 +57,7 @@ namespace Repository.Classes
             oldWorker.PhoneNumber = element.PhoneNumber;
             oldWorker.Supervisor = element.Supervisor;
             oldWorker.UserName = element.UserName;
+            oldWorker.DepartmentId = element.DepartmentId;
             await this.SaveDatabase();
         }
     }
