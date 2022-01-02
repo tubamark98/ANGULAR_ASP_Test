@@ -10,7 +10,7 @@ namespace Data.DB_Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Supervisor { get; set; } //not sure if string just yet
-
+        public long DepartmentId { get; set; }
         [JsonIgnore]
         public virtual Department Department { get; set; }
     }

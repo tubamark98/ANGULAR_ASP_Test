@@ -4,6 +4,8 @@ using Logic.Helpers;
 using Logic.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -17,11 +19,14 @@ namespace ApiEndpoint
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public Startup(IConfiguration Configuration)
+        {
+            this.Configuration = Configuration;
+        }
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
             services.AddControllers(x => x.Filters.Add(new ApiExceptionFilter()));
             services.AddSwaggerGen(c =>
             {
@@ -37,10 +42,22 @@ namespace ApiEndpoint
             services.AddTransient<IDepartmentRepo, DepartmentRepo>();
             services.AddTransient<DBSeed, DBSeed>();
 
-            services.AddDbContext<Data.DbContext>();
+            string appsettingsConnectionString = Configuration.GetConnectionString("workerdb");
+            services.AddDbContext<Data.DbContext>(options =>options
+            .EnableSensitiveDataLogging()
+            .EnableDetailedErrors()
+            .UseSqlServer(appsettingsConnectionString, b => b.MigrationsAssembly("ApiEndpoint")));
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                                  });
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -56,11 +73,7 @@ namespace ApiEndpoint
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseCors(x => x
-              .AllowCredentials()
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .WithOrigins("http://localhost:4200"));
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

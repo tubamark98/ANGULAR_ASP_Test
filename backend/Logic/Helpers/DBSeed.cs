@@ -1,6 +1,7 @@
 ﻿using Data.DB_Models;
 using Repository.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Logic.Helpers
@@ -29,8 +30,7 @@ namespace Logic.Helpers
 
         private void AddWorkers()
         {
-            var allDepartments = departmentRepo.GetAll().ToList();
-
+            var helper = departmentRepo.GetAll().ToList();
             var worker = new Worker
             {
                 Name = "Forgacs Akos",
@@ -39,8 +39,8 @@ namespace Logic.Helpers
                 UserName = "forgakos",
                 Password = "string", //Not very safe but good for now
                 Supervisor = "Bill Gates",
-                Department = allDepartments[0]
-            };
+                DepartmentId = helper[0].Id
+        };
             workerRepo.Add(worker).Wait();
 
             worker = new Worker
@@ -51,7 +51,7 @@ namespace Logic.Helpers
                 UserName = "hortmate",
                 Password = "string", //Not very safe but good for now
                 Supervisor = "Bill Gates",
-                Department = allDepartments[1]
+                DepartmentId = helper[1].Id
             };
             workerRepo.Add(worker).Wait();
 
@@ -63,7 +63,7 @@ namespace Logic.Helpers
                 UserName = "tothviki",
                 Password = "string", //Not very safe but good for now
                 Supervisor = "Bill Gates",
-                Department = allDepartments[2]
+                DepartmentId = helper[2].Id
             };
             workerRepo.Add(worker).Wait();
 
@@ -75,7 +75,7 @@ namespace Logic.Helpers
                 UserName = "tothdave",
                 Password = "string", //Not very safe but good for now
                 Supervisor = "Bill Gates",
-                Department = allDepartments[3]
+                DepartmentId = helper[3].Id
             };
             workerRepo.Add(worker).Wait();
 
@@ -87,7 +87,7 @@ namespace Logic.Helpers
                 UserName = "nagypete",
                 Password = "string", //Not very safe but good for now
                 Supervisor = "Bill Gates",
-                Department = allDepartments[3]
+                DepartmentId = helper[3].Id,
             };
             workerRepo.Add(worker).Wait();
         }
@@ -100,6 +100,7 @@ namespace Logic.Helpers
                 Abreviation = "SD",
                 Active = true
             };
+            
             departmentRepo.Add(dprtmnt).Wait();
 
             dprtmnt = new Department
