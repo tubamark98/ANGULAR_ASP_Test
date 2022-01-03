@@ -5,7 +5,7 @@ import { WorkerManagerComponent } from './worker-manager/worker-manager.componen
 
 const routes: Routes = [
   {path : 'worker', component: WorkerManagerComponent},
-  {path : 'department', component: DepartmentManagerComponent}
+  {path : 'department', component: DepartmentManagerComponent},
 ];
 
 @NgModule({
