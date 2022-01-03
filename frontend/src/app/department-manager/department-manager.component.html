@@ -1,9 +1,9 @@
 <div class="workerForm">
     <label>Active</label>
     <input type="checkbox" [(ngModel)]="actualDepartment.active" />
-    <label>Name</label>
+    <label>Department's Name</label>
     <input type="text" [(ngModel)]="actualDepartment.name" />
-    <label>Abreviation</label>
+    <label>Department's Abreviation</label>
     <input type="text" [(ngModel)]="actualDepartment.abreviation" />
 
     <button (click)="erase()" type="button">Erase Form</button>
@@ -12,7 +12,7 @@
 </div>
 <table>
     <tr>
-      <th>Name</th>
+      <th>Department's Name</th>
       <th>Abreviation</th>
       <th>Edit</th>
     </tr>
