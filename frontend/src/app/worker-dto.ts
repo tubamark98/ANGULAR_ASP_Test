@@ -3,6 +3,7 @@ import { Worker } from "./worker";
 export class WorkerDTO {
     public active : boolean;
     public name : string;
+    public assignment : string;
     public phoneNumber : string;
     public userName : string;
     public password : string;
@@ -19,5 +20,6 @@ export class WorkerDTO {
             this.supervisor = worker.supervisor;
             this.id = worker.id;
             this.departmentId = worker.departmentId;
+            this.assignment = worker.assignment;
     }
 }

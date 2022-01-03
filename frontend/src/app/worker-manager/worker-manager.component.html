@@ -3,6 +3,8 @@
     <input type="checkbox" [(ngModel)]="actualWorker.active" />
     <label>Name</label>
     <input type="text" [(ngModel)]="actualWorker.name" />
+    <label>Assignment</label>
+    <input type="text" [(ngModel)]="actualWorker.assignment" />
     <label>PhoneNumber</label>
     <input type="text" [(ngModel)]="actualWorker.phoneNumber" />
     <label>UserName</label>
@@ -40,7 +42,6 @@
       <th>Assignment</th>
       <th>Phone Number</th>
       <th>Department Name</th>
-      <th>Abreviation</th>
       <th>Edit</th>
     </tr>
     <tr *ngFor="let worker of workerCollection">
@@ -48,7 +49,6 @@
       <td>{{worker.assignment}}</td>
       <td>{{worker.phoneNumber}}</td>
       <td>{{worker.departmentName}}</td>
-      <td>{{worker.abreviation}}</td>
       <td>
         <button (click)="deleteWorker(worker.id)">Remove</button>
         <button (click)="updateWorker(worker.id)">Update</button>
