@@ -53,9 +53,10 @@ export class WorkerManagerComponent implements OnInit {
   }
 
   deleteWorker(id: number){
-    this.http.delete('https://localhost:44343/DeleteWorker/'+id , )
+    this.http.delete('https://localhost:44343/DeleteWorker/' + id)
       .subscribe(t => this.sync());
   }
+  
   updateWorker(id:number){
     let workerToUpdate = this.workerCollection.filter(t => t.id == id)[0];
     this.actualWorker.id = workerToUpdate.id;

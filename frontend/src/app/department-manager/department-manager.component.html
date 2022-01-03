@@ -1,1 +1,27 @@
-<p>department-manager works!</p>
+<div class="workerForm">
+    <label>Active</label>
+    <input type="checkbox" [(ngModel)]="actualDepartment.active" />
+    <label>Name</label>
+    <input type="text" [(ngModel)]="actualDepartment.name" />
+    <label>Abreviation</label>
+    <input type="text" [(ngModel)]="actualDepartment.abreviation" />
+
+    <button (click)="erase()" type="button">Erase Form</button>
+    <button (click)="saveDepart()" type="button">Save Department</button>
+    <button (click)="sync()" type="button">Sync Departments</button>
+</div>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Abreviation</th>
+      <th>Edit</th>
+    </tr>
+    <tr *ngFor="let depart of departmentCollection">
+      <td>{{depart.name}}</td>
+      <td>{{depart.abreviation}}</td>
+      <td>
+        <button (click)="deleteDepart(depart.id)">Remove</button>
+        <button (click)="updateDepart(depart.id)">Update</button>
+      </td>
+    </tr>
+</table>
