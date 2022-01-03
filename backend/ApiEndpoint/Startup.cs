@@ -40,12 +40,15 @@ namespace ApiEndpoint
             services.AddTransient<IWorkerRepo, WorkerRepo>();
             services.AddTransient<IDepartmentLogic, DepartmentLogic>();
             services.AddTransient<IDepartmentRepo, DepartmentRepo>();
+            services.AddTransient<IAuthLogic, AuthLogic>();
             services.AddTransient<DBSeed, DBSeed>();
 
             string appsettingsConnectionString = Configuration.GetConnectionString("workerdb");
             services.AddDbContext<Data.workerDbContext>(options =>options
+#if DEBUG
             .EnableSensitiveDataLogging()
             .EnableDetailedErrors()
+#endif
             .UseSqlServer(appsettingsConnectionString, b => b.MigrationsAssembly("ApiEndpoint")));
 
             services.AddCors(options =>

@@ -10,5 +10,10 @@
             </summary>
             <returns>200</returns>
         </member>
+        <member name="M:ApiEndpoint.Controllers.AuthController.Login(Logic.DTO_Models.LoginDTO)">
+            <summary>
+            Not implemented properly
+            </summary>
+        </member>
     </members>
 </doc>

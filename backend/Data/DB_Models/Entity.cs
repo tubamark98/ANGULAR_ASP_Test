@@ -9,7 +9,11 @@ namespace Data.DB_Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+        [Required(AllowEmptyStrings = false)]
+        [DataType(DataType.Text)]
+        [MaxLength(254)]
         public string Name { get; set; }
+
         public bool Active { get; set; }
     }
 }
