@@ -8,11 +8,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {MatListModule} from '@angular/material/list';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DepartmentManagerComponent } from './department-manager/department-manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkerManagerComponent
+    WorkerManagerComponent,
+    DepartmentManagerComponent
   ],
   imports: [
     BrowserModule,
