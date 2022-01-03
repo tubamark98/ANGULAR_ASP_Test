@@ -1,0 +1,40 @@
+table{
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 10px;
+  }
+  
+  th{
+    background-color: beige;
+  }
+  
+  td{
+    text-align: center;
+  }
+  
+  .workerForm{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+  
+  .workerForm label, input, button{
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  .workerForm label{
+    font-size: 1.1em;
+    font-weight: bolder;
+  }
+  
+  .workerForm button{
+    margin-top: 20px;
+  }
