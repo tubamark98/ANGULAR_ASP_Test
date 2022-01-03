@@ -1,0 +1,57 @@
+<div class="workerForm">
+    <label>Active</label>
+    <input type="checkbox" [(ngModel)]="actualWorker.active" />
+    <label>Name</label>
+    <input type="text" [(ngModel)]="actualWorker.name" />
+    <label>Assignment</label>
+    <input type="text" [(ngModel)]="actualWorker.assignment" />
+    <label>PhoneNumber</label>
+    <input type="text" [(ngModel)]="actualWorker.phoneNumber" />
+    <label>UserName</label>
+    <input type="text" [(ngModel)]="actualWorker.userName" />
+    <label>Password</label>
+    <input type="password" [(ngModel)]="actualWorker.password" />
+    <h2>Supervisors</h2>
+
+    <mat-selection-list #workers [multiple]="false">
+      <mat-list-option *ngFor="let worker of workerCollection" [value]="worker.name" (click)="onSelectWorker(worker)">
+        {{worker.name}}
+      </mat-list-option>
+    </mat-selection-list>
+    <p>
+      Option selected: {{workers.selectedOptions.selected[0]?.value}}
+    </p>
+
+    <mat-selection-list #departs [multiple]="false">
+      <mat-list-option *ngFor="let depart of departmentCollection" [value]="depart.name"(click)="onSelectDepart(depart)">
+        {{depart.name}}
+      </mat-list-option>
+    </mat-selection-list>
+    <p>
+      Option selected: {{departs.selectedOptions.selected[0]?.value}}
+    </p>
+    
+    <button (click)="erase()" type="button">Erase Form</button>
+    <button (click)="saveWorker()" type="button">Save Worker</button>
+    <button (click)="sync()" type="button">Sync Worker</button>
+</div>
+
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Assignment</th>
+      <th>Phone Number</th>
+      <th>Department Name</th>
+      <th>Edit</th>
+    </tr>
+    <tr *ngFor="let worker of workerCollection">
+      <td>{{worker.name}}</td>
+      <td>{{worker.assignment}}</td>
+      <td>{{worker.phoneNumber}}</td>
+      <td>{{worker.departmentName}}</td>
+      <td>
+        <button (click)="deleteWorker(worker.id)">Remove</button>
+        <button (click)="updateWorker(worker.id)">Update</button>
+      </td>
+    </tr>
+</table>
