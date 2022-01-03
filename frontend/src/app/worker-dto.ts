@@ -1,3 +1,5 @@
+import { Worker } from "./worker";
+
 export class WorkerDTO {
     public active : boolean;
     public name : string;
@@ -8,15 +10,14 @@ export class WorkerDTO {
     public id : number;
     public departmentId : number;
 
-    constructor(active : boolean, name : string, 
-        phoneNumber : string, userName : string, password : string, supervisor : string, departmentId : number) {
-            this.active = active;
-            this.name = name;
-            this.phoneNumber = phoneNumber;
-            this.userName = userName;
-            this.password = password;
-            this.supervisor = supervisor;
-            this.id = 0;
-            this.departmentId = departmentId;
+    constructor(worker: Worker) {
+            this.active = worker.active;
+            this.name = worker.name;
+            this.phoneNumber = worker.phoneNumber;
+            this.userName = worker.userName;
+            this.password = worker.password;
+            this.supervisor = worker.supervisor;
+            this.id = worker.id;
+            this.departmentId = worker.departmentId;
     }
 }

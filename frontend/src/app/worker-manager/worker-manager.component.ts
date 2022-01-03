@@ -4,6 +4,7 @@ import { Worker } from '../worker';
 import { Department } from '../department';
 import { WorkerDTO } from '../worker-dto';
 
+
 @Component({
   selector: 'app-worker-manager',
   templateUrl: './worker-manager.component.html',
@@ -18,7 +19,7 @@ export class WorkerManagerComponent implements OnInit {
   private http : HttpClient;
 
   constructor(http : HttpClient) {
-    this.actualWorker = new Worker(false,'', '','','','');
+    this.actualWorker = new Worker(false,'', '','','','','');
     this.http = http;
   }
 
@@ -27,13 +28,14 @@ export class WorkerManagerComponent implements OnInit {
   }
 
   saveWorker(){
-    const data = this.convertWorkerDTO();
-    if (this.actualWorker.id == 0){
+    const data = new WorkerDTO(this.actualWorker);
+
+    if (this.actualWorker.id == 0){ //create
       console.log(data);
       this.http.post('https://localhost:44343/CreateWorker', data)
         .subscribe(t => this.sync());
     }
-    else{
+    else{                         //update
       this.http.put('https://localhost:44343/UpdateWorker', data)
         .subscribe(t => this.sync());
     }
@@ -47,7 +49,7 @@ export class WorkerManagerComponent implements OnInit {
   }
 
   erase() {
-    this.actualWorker = new Worker(false,'', '','','','');
+    this.actualWorker = new Worker(false,'', '','','','','');
   }
 
   deleteWorker(id: number){
@@ -57,6 +59,13 @@ export class WorkerManagerComponent implements OnInit {
   updateWorker(id:number){
 
   }
+  onSelectWorker(worker:Worker){
+    this.actualWorker.supervisor = worker.name;
+  }
+
+  onSelectDepart(depart:Department){
+    this.actualWorker.departmentId = depart.id;
+  }
 
   updateWorkerStats(){
     this.workerCollection.forEach(element => {
@@ -64,9 +73,4 @@ export class WorkerManagerComponent implements OnInit {
       element.abreviation = this.departmentCollection.filter(t => t.id == element.departmentId)[0].abreviation
     });
   }
-
-  convertWorkerDTO(){
-    return new WorkerDTO(this.actualWorker.active, this.actualWorker.name, this.actualWorker.phoneNumber,
-      this.actualWorker.userName, this.actualWorker.password, this.actualWorker.supervisor,this.actualWorker.departmentId)
-    }
 }

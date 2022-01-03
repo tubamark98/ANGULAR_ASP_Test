@@ -35,6 +35,7 @@ namespace Logic.Helpers
             {
                 Name = "Forgacs Akos",
                 Active = true,
+                Assignment = "Esti",
                 PhoneNumber = "0690123456",
                 UserName = "forgakos",
                 Password = "string", //Not very safe but good for now
@@ -47,6 +48,7 @@ namespace Logic.Helpers
             {
                 Name = "Hortobágyi Mate",
                 Active = true,
+                Assignment = "Nappali",
                 PhoneNumber = "0690123456",
                 UserName = "hortmate",
                 Password = "string", //Not very safe but good for now
@@ -59,6 +61,7 @@ namespace Logic.Helpers
             {
                 Name = "Toth Viktoria",
                 Active = true,
+                Assignment = "Nappali",
                 PhoneNumber = "0690123456",
                 UserName = "tothviki",
                 Password = "string", //Not very safe but good for now
@@ -71,6 +74,7 @@ namespace Logic.Helpers
             {
                 Name = "Toth Dávid",
                 Active = true,
+                Assignment = "Esti",
                 PhoneNumber = "0690123456",
                 UserName = "tothdave",
                 Password = "string", //Not very safe but good for now
@@ -83,12 +87,14 @@ namespace Logic.Helpers
             {
                 Name = "Nagy Peter",
                 Active = true,
+                Assignment = "Nappali",
                 PhoneNumber = "0690123456",
                 UserName = "nagypete",
                 Password = "string", //Not very safe but good for now
                 Supervisor = "Bill Gates",
                 DepartmentId = helper[3].Id,
             };
+
             workerRepo.Add(worker).Wait();
         }
 

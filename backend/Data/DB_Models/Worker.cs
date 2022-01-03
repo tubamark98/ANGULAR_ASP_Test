@@ -5,6 +5,7 @@ namespace Data.DB_Models
 {
     public class Worker : Entity //Name and ID from Entity
     {
+        public string Assignment { get; set; }
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         public string UserName { get; set; }

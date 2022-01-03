@@ -9,12 +9,26 @@
     <input type="text" [(ngModel)]="actualWorker.userName" />
     <label>Password</label>
     <input type="password" [(ngModel)]="actualWorker.password" />
-    <label>Supervisor</label>
-    <input type="text" [(ngModel)]="actualWorker.supervisor" />
-    <label>DepartmentID</label>
-    <input type="number" [(ngModel)]="actualWorker.departmentId" />
-    
+    <h2>Supervisors</h2>
 
+    <mat-selection-list #workers [multiple]="false">
+      <mat-list-option *ngFor="let worker of workerCollection" [value]="worker.name" (click)="onSelectWorker(worker)">
+        {{worker.name}}
+      </mat-list-option>
+    </mat-selection-list>
+    <p>
+      Option selected: {{workers.selectedOptions.selected[0]?.value}}
+    </p>
+
+    <mat-selection-list #departs [multiple]="false">
+      <mat-list-option *ngFor="let depart of departmentCollection" [value]="depart.name"(click)="onSelectDepart(depart)">
+        {{depart.name}}
+      </mat-list-option>
+    </mat-selection-list>
+    <p>
+      Option selected: {{departs.selectedOptions.selected[0]?.value}}
+    </p>
+    
     <button (click)="erase()" type="button">Erase Form</button>
     <button (click)="saveWorker()" type="button">Save Worker</button>
     <button (click)="sync()" type="button">Sync Worker</button>
@@ -22,23 +36,17 @@
 
 <table>
     <tr>
-      <th>Active</th>
       <th>Name</th>
+      <th>Assignment</th>
       <th>Phone Number</th>
-      <th>User Name</th>
-      <th>Password</th>
-      <th>Supervisor</th>
       <th>Department Name</th>
       <th>Abreviation</th>
       <th>Edit</th>
     </tr>
     <tr *ngFor="let worker of workerCollection">
-      <td>{{worker.active}}</td>
       <td>{{worker.name}}</td>
+      <td>{{worker.assignment}}</td>
       <td>{{worker.phoneNumber}}</td>
-      <td>{{worker.userName}}</td>
-      <td>{{worker.password}}</td> <!-- I know showing password is really bad practice, just wanted to show the data comes back properly -->
-      <td>{{worker.supervisor}}</td>
       <td>{{worker.departmentName}}</td>
       <td>{{worker.abreviation}}</td>
       <td>

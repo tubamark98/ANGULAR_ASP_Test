@@ -1,6 +1,7 @@
 export class Worker {
     public active : boolean;
     public name : string;
+    public assignment : string;
     public phoneNumber : string;
     public userName : string;
     public password : string;
@@ -11,9 +12,11 @@ export class Worker {
     public departmentId : number;
 
     constructor(active : boolean, name : string, 
-        phoneNumber : string, userName : string, password : string, supervisor : string){
+        phoneNumber : string, userName : string, password : string,
+         supervisor : string, assignment:string){
         this.active = active;
         this.name = name;
+        this.assignment = assignment;
         this.phoneNumber = phoneNumber;
         this.userName = userName;
         this.password = password;
