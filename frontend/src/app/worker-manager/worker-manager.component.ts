@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { Worker } from '../worker';
 import { Department } from '../department';
+import { WorkerDTO } from '../worker-dto';
 
 @Component({
   selector: 'app-worker-manager',
@@ -26,14 +27,15 @@ export class WorkerManagerComponent implements OnInit {
   }
 
   saveWorker(){
+    const data = this.convertWorkerDTO();
     if (this.actualWorker.id == 0){
-      console.log(this.actualWorker);
-      this.http.post('https://localhost:44343/CreateWorker', this.actualWorker)
-        .subscribe(t => console.log(t));
+      console.log(data);
+      this.http.post('https://localhost:44343/CreateWorker', data)
+        .subscribe(t => this.sync());
     }
     else{
-      this.http.put('https://localhost:44343/UpdateWorker', this.actualWorker)
-        .subscribe(t => console.log(t));
+      this.http.put('https://localhost:44343/UpdateWorker', data)
+        .subscribe(t => this.sync());
     }
   }
 
@@ -50,7 +52,7 @@ export class WorkerManagerComponent implements OnInit {
 
   deleteWorker(id: number){
     this.http.delete('https://localhost:44343/DeleteWorker/'+id , )
-      .subscribe(t => console.log(t));
+      .subscribe(t => this.sync());
   }
   updateWorker(id:number){
 
@@ -62,4 +64,9 @@ export class WorkerManagerComponent implements OnInit {
       element.abreviation = this.departmentCollection.filter(t => t.id == element.departmentId)[0].abreviation
     });
   }
+
+  convertWorkerDTO(){
+    return new WorkerDTO(this.actualWorker.active, this.actualWorker.name, this.actualWorker.phoneNumber,
+      this.actualWorker.userName, this.actualWorker.password, this.actualWorker.supervisor,this.actualWorker.departmentId)
+    }
 }
