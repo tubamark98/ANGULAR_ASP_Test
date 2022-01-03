@@ -43,6 +43,22 @@ namespace Logic.Classes
             }
         }
 
+        public async Task<Worker> FindByNameAsync(string username)
+        {
+            var find = (from x in workerRepo.GetAll()
+                        where x.UserName == username
+                        select x).FirstOrDefault();
+
+            if (find == null)
+            {
+                return find;
+            }
+            else
+            {
+                throw new InvalidOperationException(WorkerErrorMessages.WorkerNotFound);
+            }
+        }
+
         public async Task<Worker> GetByIdAsync(long id)
         {
             return await workerRepo.GetOne(id);

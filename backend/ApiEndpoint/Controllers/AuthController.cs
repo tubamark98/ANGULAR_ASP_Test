@@ -1,4 +1,6 @@
-﻿using Logic.Helpers;
+﻿using Logic.DTO_Models;
+using Logic.Helpers;
+using Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,10 +10,12 @@ namespace ApiEndpoint.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        IAuthLogic authLogic;
         private DBSeed dBSeed;
-        public AuthController(DBSeed dBSeed)
+        public AuthController(IAuthLogic authLogic, DBSeed dBSeed)
         {
             this.dBSeed = dBSeed;
+            this.authLogic = authLogic;
         }
 
         /// <summary>
@@ -24,6 +28,17 @@ namespace ApiEndpoint.Controllers
         {
             dBSeed.PopulateDB();
             return Ok();
+        }
+
+        /// <summary>
+        /// Not implemented properly
+        /// </summary>
+        [HttpPut]
+        [Route("login")]
+
+        public async Task<ActionResult> Login([FromBody] LoginDTO login)
+        {
+            return Ok(await authLogic.LoginUser(login));
         }
     }
 }
